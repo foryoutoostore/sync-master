@@ -1,0 +1,9 @@
+{
+  "buildCommand": "pnpm run build",
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "env": {
+    "VITE_APP_TITLE": "Bolos de Pote - 2 Receitas Grátis",
+    "VITE_APP_LOGO": "/images/logo_receitas_branco.webp"
+  }
+}
