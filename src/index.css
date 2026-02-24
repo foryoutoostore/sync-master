@@ -1,87 +1,41 @@
-@import "tailwindcss";
-@custom-variant dark (&:is(.dark *));
+/* Tailwind v3 entry */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
-  
-  /* Fontes do HTML Original */
-  --font-display: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-  --font-body: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-}
-
+/* Tokens (mantidos) */
 :root {
   /* Paleta EXATA do arquivo 2-cremosoformigueiro.html */
-  /* --bg-dark: #2f1c0c; */
-  /* --bg-card: #e3c093; */
-  /* --orange-accent: #944300; */
-  /* --text-primary: #452717; */
-  /* --card-arrow-color: #ff7300; */
-
   --background: #2f1c0c; /* Marrom Café Fundo */
   --foreground: #e3c093; /* Bege Texto Claro */
-  
+
   --card: #e3c093; /* Bege Card */
   --card-foreground: #452717; /* Marrom Texto Escuro */
-  
+
   --popover: #e3c093;
   --popover-foreground: #452717;
-  
+
   --primary: #ff7300; /* Laranja Vivo (Setas/Destaques) */
   --primary-foreground: #ffffff;
-  
+
   --secondary: #944300; /* Laranja Escuro (Títulos) */
   --secondary-foreground: #ffffff;
-  
+
   --muted: #4a2c13;
   --muted-foreground: #e3c093;
-  
+
   --accent: #944300;
   --accent-foreground: #ffffff;
-  
-  --destructive: #EF4444;
-  --destructive-foreground: #FFFFFF;
-  
+
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+
   --border: #944300;
   --input: #4a2c13;
   --ring: #ff7300;
-  
-  --radius: 16px; /* Conforme CSS original .recipe-card { border-radius: 16px; } */
-  
+
+  --radius: 16px;
+
   --sidebar: #2f1c0c;
   --sidebar-foreground: #e3c093;
   --sidebar-primary: #ff7300;
@@ -90,20 +44,46 @@
   --sidebar-accent-foreground: #e3c093;
   --sidebar-border: #944300;
   --sidebar-ring: #ff7300;
+
+  /* Fontes do HTML Original */
+  --font-display: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
 }
 
+/* Dark mode por classe (Tailwind v3: darkMode: 'class') */
+.dark {
+  /* Se quiser um dark diferente, ajuste aqui.
+     Por ora, mantém a mesma paleta para evitar regressão visual. */
+}
+
+/* Base */
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
+
   body {
-    @apply bg-background text-foreground font-body;
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
   }
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-display font-bold uppercase;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    @apply font-bold uppercase;
+  }
+
+  /* Focus visível consistente (substitui outline-ring/50 do v4) */
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
   }
 }
 
+/* Components */
 @layer components {
   .container {
     width: 100%;
